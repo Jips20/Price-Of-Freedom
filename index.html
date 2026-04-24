@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Price of Freedom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgm" src="music/intro.mp3" loop preload="auto"></audio>
+
+  <!-- Letterbox Bars -->
+  <div id="lbt"></div>
+  <div id="lbb"></div>
+
+  <!-- Background Layers -->
+  <div id="bg-img"></div>
+  <div id="fog1"></div>
+  <div id="fog2"></div>
+  <div id="fog3"></div>
+  <div id="vig"></div>
+  <div id="scan"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="fx"></canvas>
+
+  <!-- Border Frame Lines -->
+  <div class="b-line t1"></div>
+  <div class="b-line t2"></div>
+  <div class="b-line b1"></div>
+  <div class="b-line b2"></div>
+
+  <!-- Corner Ornaments -->
+  <div class="cop tl"></div>
+  <div class="cop tr"></div>
+  <div class="cop bl"></div>
+  <div class="cop br"></div>
+
+  <!-- Main Stage -->
+  <div id="stage">
+
+    <!-- Logo -->
+    <div id="logo">
+      <img
+        src="images/logo.png"
+        alt="The Price of Freedom logo"
+        onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='block'"
+      >
+      <div id="logo-fb">✦ THE PRICE OF FREEDOM ✦</div>
+    </div>
+
+    <!-- Eyebrow Text -->
+    <div id="eb">Escape from the Nazis!</div>
+
+    <!-- Title -->
+    <div id="title">
+      <span id="t-the">The</span>
+      <div id="title-wrapper">
+        <span id="t-main">Price</span>
+        <svg id="blood-overlay" viewBox="0 0 500 130" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="bb"><feGaussianBlur stdDeviation="0.8"/></filter>
+          </defs>
+          <circle cx="42"  cy="22"  r="5"   fill="#8b0000" opacity="0.85" filter="url(#bb)"/>
+          <circle cx="55"  cy="15"  r="3"   fill="#6b0000" opacity="0.75"/>
+          <circle cx="35"  cy="32"  r="3.5" fill="#900000" opacity="0.78" filter="url(#bb)"/>
+          <circle cx="62"  cy="28"  r="2"   fill="#7a0000" opacity="0.65"/>
+          <path d="M44 78 Q45 92 43 106 Q42 116 44 124" stroke="#7a0000" stroke-width="4" fill="none" opacity="0.82"/>
+          <ellipse cx="44"  cy="128" rx="4.5" ry="6"   fill="#6b0000" opacity="0.78"/>
+          <path d="M56 78 Q57 88 55 97" stroke="#8b0000" stroke-width="3" fill="none" opacity="0.68"/>
+          <ellipse cx="55"  cy="100" rx="3.5" ry="4.5" fill="#7a0000" opacity="0.70"/>
+          <ellipse cx="148" cy="24"  rx="26" ry="16"   fill="#7a0000" opacity="0.48" filter="url(#bb)" transform="rotate(-10,148,24)"/>
+          <circle cx="136" cy="16"  r="5"   fill="#8b0000" opacity="0.82" filter="url(#bb)"/>
+          <circle cx="152" cy="10"  r="3.5" fill="#6b0000" opacity="0.72"/>
+          <circle cx="163" cy="22"  r="3.8" fill="#900000" opacity="0.68"/>
+          <path d="M144 78 Q145 95 143 112 Q142 122 144 130" stroke="#8b0000" stroke-width="5" fill="none" opacity="0.78"/>
+          <ellipse cx="144" cy="130" rx="5.5" ry="7"   fill="#6b0000" opacity="0.75"/>
+          <path d="M158 78 Q159 89 157 99 Q156 107 158 113" stroke="#7a0000" stroke-width="3.5" fill="none" opacity="0.65"/>
+          <ellipse cx="158" cy="117" rx="3.8" ry="5"   fill="#7a0000" opacity="0.65"/>
+          <ellipse cx="250" cy="20"  rx="14" ry="20"   fill="#800000" opacity="0.45" filter="url(#bb)"/>
+          <circle cx="248" cy="12"  r="5.5" fill="#8b0000" opacity="0.80" filter="url(#bb)"/>
+          <circle cx="258" cy="20"  r="3.5" fill="#6b0000" opacity="0.68"/>
+          <path d="M250 78 Q251 100 249 120 Q248 128 250 130" stroke="#8b0000" stroke-width="5.5" fill="none" opacity="0.88"/>
+          <path d="M242 78 Q242 86 241 94" stroke="#7a0000" stroke-width="2.5" fill="none" opacity="0.62"/>
+          <ellipse cx="241" cy="97"  rx="3"   ry="4"   fill="#7a0000" opacity="0.62"/>
+          <circle cx="335" cy="16"  r="6.5" fill="#8b0000" opacity="0.83" filter="url(#bb)"/>
+          <circle cx="320" cy="24"  r="4.5" fill="#6b0000" opacity="0.75"/>
+          <circle cx="348" cy="26"  r="4"   fill="#900000" opacity="0.70"/>
+          <circle cx="328" cy="8"   r="3"   fill="#7a0000" opacity="0.65"/>
+          <circle cx="344" cy="10"  r="2.2" fill="#8b0000" opacity="0.60"/>
+          <circle cx="314" cy="18"  r="1.8" fill="#6b0000" opacity="0.55"/>
+          <path d="M336 78 Q337 92 335 105 Q334 114 336 122" stroke="#8b0000" stroke-width="4" fill="none" opacity="0.76"/>
+          <ellipse cx="336" cy="126" rx="4.5" ry="6"   fill="#6b0000" opacity="0.73"/>
+          <path d="M322 78 Q322 88 321 97" stroke="#7a0000" stroke-width="3" fill="none" opacity="0.58"/>
+          <ellipse cx="321" cy="100" rx="3.2" ry="4.2" fill="#7a0000" opacity="0.60"/>
+          <ellipse cx="440" cy="28"  rx="30" ry="20"   fill="#750000" opacity="0.50" filter="url(#bb)" transform="rotate(5,440,28)"/>
+          <circle cx="428" cy="14"  r="7"   fill="#8b0000" opacity="0.83" filter="url(#bb)"/>
+          <circle cx="446" cy="8"   r="5"   fill="#6b0000" opacity="0.76"/>
+          <circle cx="458" cy="22"  r="4.5" fill="#900000" opacity="0.70"/>
+          <circle cx="434" cy="36"  r="3.8" fill="#7a0000" opacity="0.66"/>
+          <circle cx="420" cy="22"  r="2.5" fill="#6b0000" opacity="0.56"/>
+          <circle cx="464" cy="16"  r="1.8" fill="#7a0000" opacity="0.54"/>
+          <path d="M430 78 Q431 98 429 118 Q428 127 430 130" stroke="#8b0000" stroke-width="5" fill="none" opacity="0.83"/>
+          <path d="M447 78 Q448 93 446 106 Q445 115 447 122" stroke="#7a0000" stroke-width="4" fill="none" opacity="0.73"/>
+          <ellipse cx="447" cy="126" rx="4.5" ry="5.5" fill="#6b0000" opacity="0.70"/>
+          <path d="M458 78 Q458 86 457 94" stroke="#800000" stroke-width="2.5" fill="none" opacity="0.58"/>
+          <ellipse cx="457" cy="97"  rx="3"   ry="4"   fill="#700000" opacity="0.60"/>
+          <path d="M30 82 Q180 86 250 82 Q370 86 470 82" stroke="#6b0000" stroke-width="2" fill="none" opacity="0.28" filter="url(#bb)"/>
+        </svg>
+      </div>
+      <span id="t-of">of Freedom</span>
+    </div>
+
+    <!-- Gold Ornament Divider -->
+    <div id="orn">
+      <svg viewBox="0 0 320 18" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="transparent"/>
+            <stop offset="35%"  stop-color="#c9a84c" stop-opacity=".5"/>
+            <stop offset="50%"  stop-color="#f0d070"/>
+            <stop offset="65%"  stop-color="#c9a84c" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </linearGradient>
+        </defs>
+        <line x1="0"   y1="9" x2="125" y2="9" stroke="url(#lg)" stroke-width="1"/>
+        <polygon points="143,2 153,9 143,16 133,9" fill="#c9a84c" opacity=".95"/>
+        <polygon points="163,5 169,9 163,13 157,9" fill="#7a5e22" opacity=".8"/>
+        <polygon points="123,5 129,9 123,13 117,9" fill="#7a5e22" opacity=".8"/>
+        <line x1="181" y1="9" x2="320" y2="9" stroke="url(#lg)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div id="btns">
+
+      <!-- Begin the Fight -->
+      <button class="gbtn" id="sb">
+        <div class="gi">
+          <span class="deco dl"></span>
+          <svg class="gb-svg" viewBox="0 0 330 52" preserveAspectRatio="none"><rect x="1" y="1" width="328" height="50"/></svg>
+          <span class="gl">Begin the Fight</span>
+          <span class="ga">›</span>
+          <span class="deco dr"></span>
+        </div>
+      </button>
+
+      <!-- Axis World -->
+      <button class="gbtn" id="bs" onclick="location.href='openworld.html'">
+        <div class="gi">
+          <span class="deco dl"></span>
+          <svg class="gb-svg" viewBox="0 0 330 52" preserveAspectRatio="none"><rect x="1" y="1" width="328" height="50"/></svg>
+          <span class="gl">Axis World</span>
+          <span class="ga">›</span>
+          <span class="deco dr"></span>
+        </div>
+      </button>
+
+      <!-- Options -->
+      <button class="gbtn" id="ob">
+        <div class="gi">
+          <svg class="gb-svg" viewBox="0 0 330 48" preserveAspectRatio="none"><rect x="1" y="1" width="328" height="46"/></svg>
+          <span class="gl">Options</span>
+          <span class="ga">›</span>
+        </div>
+      </button>
+
+    </div>
+  </div><!-- /#stage -->
+
+  <!-- Footer -->
+  <div id="foot">
+    <span class="hud-t">© 2025 The Price of Freedom</span>
+    <div id="ver">v1.0.0</div>
+  </div>
+
+  <!-- Mute Toggle (hidden by default, kept for compatibility) -->
+  <button id="mute-btn">♪ Music</button>
+
+  <!-- Intro Video Overlay -->
+  <div id="vo">
+    <video id="iv" src="animation/Intro Story.mp4" playsinline preload="auto"></video>
+    <div id="vph">
+      <p>Loading intro video...</p>
+      <p class="sub">Continuing in <span id="cd">5</span> seconds…</p>
+    </div>
+    <div id="vp"><div id="vpf"></div></div>
+    <button id="sk">SKIP ▶</button>
+  </div>
+
+  <!-- Options Overlay -->
+  <div id="opt-overlay">
+    <div id="opt-panel">
+      <div class="opt-corner-tr"></div>
+      <div class="opt-corner-bl"></div>
+
+      <button id="opt-close">✕ Close</button>
+      <div id="opt-title">Options</div>
+      <div class="opt-rule"></div>
+
+      <!-- Audio Section -->
+      <div class="opt-section">Audio</div>
+
+      <div class="opt-row">
+        <span class="opt-lbl">Music Vol</span>
+        <div class="opt-slider-wrap">
+          <input type="range" class="opt-slider" id="music-vol" min="0" max="100" value="55" step="1">
+          <span class="opt-val" id="music-vol-val">55</span>
+        </div>
+      </div>
+
+      <div class="opt-row">
+        <span class="opt-lbl">Music Mute</span>
+        <div id="music-mute-toggle" class="opt-toggle" title="Toggle music mute"></div>
+        <span style="font-size:10px;letter-spacing:3px;color:rgba(201,168,76,.35);margin-left:10px;" id="mute-lbl">OFF</span>
+      </div>
+
+      <div class="opt-row">
+        <span class="opt-lbl">SFX Vol</span>
+        <div class="opt-slider-wrap">
+          <input type="range" class="opt-slider" id="sfx-vol" min="0" max="100" value="80" step="1">
+          <span class="opt-val" id="sfx-vol-val">80</span>
+        </div>
+      </div>
+
+      <button id="opt-apply">Confirm</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

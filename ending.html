@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ending Sequence</title>
+  <link rel="stylesheet" href="ending.css">
+</head>
+<body>
+
+  <!-- Scene Manager: all video elements -->
+  <div id="scene">
+    <video id="v-ending"  src="animation/Intro of Ending.mp4"  preload="auto"></video>
+    <video id="v-choices" src="animation/Choices 30 Sec.mp4"   preload="auto"></video>
+    <video id="v-loop"    src="animation/Choices Loop.mp4"      preload="auto" loop></video>
+    <video id="v-endingA" src="animation/Ending A.mp4"          preload="auto"></video>
+    <video id="v-endingB" src="animation/Ending B.mp4"          preload="auto"></video>
+    <video id="v-credits" src="animation/Credits.mp4"           preload="auto"></video>
+  </div>
+
+  <!-- Fade to Black Overlay -->
+  <div id="fade"></div>
+
+  <!-- Choice Overlay -->
+  <div id="choice-overlay">
+    <div class="choice-question-wrap">
+      <div class="choice-label">— Terminal Decision —</div>
+      <div class="choice-question">
+        Do you Accept Adolf Hitler's Terms<br>
+        in Building a Multiverse Time Machine for Him?
+      </div>
+    </div>
+    <div class="choice-divider"></div>
+    <div class="choice-buttons">
+
+      <!-- Accept -->
+      <button class="choice-btn btn-accept" id="btn-accept" onclick="choose('accept')">
+        <span class="btn-corner">[ A ]</span>
+        <span class="btn-icon"></span>
+        <div class="btn-main">Accept It and Live</div>
+        <div class="btn-sub">If you live, you will have a chance<br>to see your child and wife again.</div>
+        <div class="btn-bar"></div>
+      </button>
+
+      <!-- Refuse -->
+      <button class="choice-btn btn-refuse" id="btn-refuse" onclick="choose('refuse')">
+        <span class="btn-corner">[ B ]</span>
+        <span class="btn-icon"></span>
+        <div class="btn-main">Refuse and Die</div>
+        <div class="btn-sub">Contain Hitler from crossing into<br>any multiverse to invade them.</div>
+        <div class="btn-bar"></div>
+      </button>
+
+    </div>
+  </div>
+
+  <script src="ending.js"></script>
+</body>
+</html>

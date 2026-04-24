@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>The Price of Freedom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+  <!-- Pause Button -->
+  <button id="pause-btn" onclick="togglePause()">⏸ PAUSE</button>
+
+  <!-- Pause Screen -->
+  <div id="pause-screen">
+    <div class="pause-title">// PAUSED //</div>
+    <button id="pause-home-button">HOME</button>
+  </div>
+
+  <!-- Radio UI -->
+  <div id="radio-ui">&#9835; <span id="radio-name">RADIO OFF</span></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="load-title">THE PRICE OF <span>FREEDOM</span></div>
+    <div class="load-sub">Escape. Survive. Remember.</div>
+    <div class="load-bar-wrap"><div class="load-bar" id="load-bar-fill"></div></div>
+    <div id="loading-progress">0%</div>
+  </div>
+
+  <!-- Tutorial Overlay -->
+  <div id="tutorial-overlay">
+    <div class="tut-title">Instructions</div>
+    <div class="tut-story">
+      Police cars come STRAIGHT AT YOU from ahead!<br>
+      Collect COINS to charge URANIUM POWER!<br>
+      &#9889; <strong>NITRO</strong> gives burst speed.<br>
+      &#9762; <strong>URANIUM</strong> starts at 5 coins. Cost increases with each use!<br>
+      Press <strong>S</strong> to activate URANIUM POWER (invincible for 3 seconds)!<br>
+      Use LEFT/RIGHT to dodge police and collect coins!<br>
+      Press <strong>ENTER</strong> to cycle radio stations.
+    </div>
+    <div class="tut-controls">
+      <div class="tut-key"><div class="key-icon">&#9664;</div><div class="key-label">Left</div></div>
+      <div class="tut-key"><div class="key-icon">&#9654;</div><div class="key-label">Right</div></div>
+      <div class="tut-key"><div class="key-icon red">&#9889;</div><div class="key-label">Nitro</div></div>
+      <div class="tut-key"><div class="key-icon uranium">&#9762;</div><div class="key-label">Uranium</div></div>
+      <div class="tut-key"><div class="key-icon">↵</div><div class="key-label">Radio</div></div>
+    </div>
+    <button id="start-btn">FLOOR IT</button>
+  </div>
+
+  <!-- Three.js Render Container -->
+  <div id="container"></div>
+
+  <!-- Subtitle Overlay -->
+  <div id="subtitle-overlay">
+    <div class="subtitle-text" id="subtitle-text"></div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-left">
+      <div class="hud-block">
+        <div class="hud-label">Score</div>
+        <div class="hud-value" id="score-val">0</div>
+      </div>
+      <div class="hud-block">
+        <div class="hud-label">Speed</div>
+        <div class="hud-value" id="speed-val">60 km/h</div>
+      </div>
+      <div class="hud-block">
+        <div class="hud-label">Coins</div>
+        <div class="hud-value" id="coins-val" style="color:var(--gold)">0</div>
+      </div>
+    </div>
+    <div class="hud-right">
+      <div class="hud-block">
+        <div class="hud-label">Difficulty</div>
+        <div class="hud-value" id="difficulty-val">EASY</div>
+      </div>
+      <!-- Uranium Charge HUD -->
+      <div id="uranium-charge-hud">
+        <div class="uranium-top-row">
+          <span class="uranium-charge-label">&#9762; URANIUM</span>
+          <span id="uranium-coin-count" style="color:var(--gold);font-family:var(--font-ui);font-size:.95em;font-weight:700;">0</span>
+        </div>
+        <div id="uranium-needed-label" style="font-family:var(--font-body);font-size:.4em;color:var(--muted);letter-spacing:1px;text-align:right;">NEED 5</div>
+        <div class="uranium-bar-bg">
+          <div id="uranium-bar-fill"></div>
+        </div>
+        <div id="uranium-cd-label"></div>
+        <div id="uranium-status-label"></div>
+      </div>
+      <!-- Nitro HUD -->
+      <div id="nitro-hud">
+        <div class="nitro-label">&#9889; Nitro</div>
+        <div class="nitro-bar-bg"><div id="nitro-bar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Police Radar -->
+  <div id="police-radar">
+    <div class="radar-label">&#9651; POLICE INCOMING</div>
+    <div class="radar-bar"><div id="radar-fill"></div></div>
+  </div>
+
+  <!-- Police Alert Flash -->
+  <div id="police-alert">&#9888; POLICE INCOMING &#9888;</div>
+
+  <!-- Uranium Shield Overlay -->
+  <div id="shield-overlay">
+    <div class="shield-text">URANIUM<br>POWER</div>
+  </div>
+
+  <!-- Game Over / Busted Screen -->
+  <div id="game-over">
+    <div class="go-title">BUSTED</div>
+    <div class="go-reason" id="go-reason">Caught by police</div>
+    <div id="busted-photo-container">
+      <div id="busted-photo-placeholder">
+        <span>ADD YOUR PHOTO</span>
+        <label id="photo-upload-label" for="photo-input">UPLOAD</label>
+        <input type="file" id="photo-input" accept="image/*" capture="environment">
+      </div>
+      <img id="busted-photo" style="display:none;" alt="Busted photo">
+      <div id="busted-stamp">BUSTED</div>
+      <div class="busted-photo-label">WANTED — POLICE FILE</div>
+    </div>
+    <div class="go-score">SCORE: <span id="go-score-val">0</span></div>
+    <div class="go-btns">
+      <button id="restart-button">TRY AGAIN</button>
+      <button id="home-button">HOME</button>
+    </div>
+  </div>
+
+  <!-- Mobile Controls -->
+  <div id="mobile-controls">
+    <div class="ctrl-group"><div class="ctrl-btn" id="btn-left">&#9664;</div></div>
+    <div class="ctrl-group"><div class="ctrl-btn" id="btn-nitro">&#9889;</div></div>
+    <div class="ctrl-group"><div class="ctrl-btn" id="btn-right">&#9654;</div></div>
+  </div>
+
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+    {"imports":{"three":"https://unpkg.com/three@0.128.0/build/three.module.js"}}
+  </script>
+
+  <!-- Game Script (ES Module) -->
+  <script type="module" src="game.js"></script>
+
+</body>
+</html>
